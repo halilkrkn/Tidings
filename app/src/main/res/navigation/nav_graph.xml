@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/breakingNewsFragment"
-        android:name="com.example.tidings.ui.BreakingNewsFragment"
+        android:name="com.example.tidings.ui.fragments.BreakingNewsFragment"
         android:label="fragment_breaking_news"
         tools:layout="@layout/fragment_breaking_news" />
 </navigation>
