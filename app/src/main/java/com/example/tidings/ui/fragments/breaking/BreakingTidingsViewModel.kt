@@ -1,4 +1,4 @@
-package com.example.tidings.ui.fragments
+package com.example.tidings.ui.fragments.breaking
 
 import androidx.lifecycle.ViewModel
 import com.example.tidings.repository.TidingsRepository
