@@ -1,5 +1,6 @@
 package com.example.tidings.di
 
+import com.example.tidings.BuildConfig
 import com.example.tidings.service.api.TidingsApi
 import com.example.tidings.utils.Constants.Companion.BASE_URL
 import dagger.Module
@@ -17,28 +18,26 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-
-    // HttpLoggingInterceptor ile ağ işlemleri içersindeki tafiğği kayıt etmek için ve
-    @Singleton
     @Provides
-    fun logging(logging: HttpLoggingInterceptor): HttpLoggingInterceptor {
-        return logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-    }
-
     @Singleton
-    @Provides
-    fun client(logging: HttpLoggingInterceptor): OkHttpClient =
+    fun provideOkHttpClient() = if (BuildConfig.DEBUG) {
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         OkHttpClient.Builder()
-            .addInterceptor(logging) //Interceptor bir api isteğini takip edebilen, yeniden oluşturulabilen ve tekrardan istek atmasını sağlayan yapılardır.
+            .addInterceptor(loggingInterceptor)
             .build()
+    } else OkHttpClient
+        .Builder()
+        .build()
+
 
     @Singleton
     @Provides
-    fun provideRetrofit(client: OkHttpClient): Retrofit =
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
+            .client(okHttpClient)
             .build()
 
     @Singleton

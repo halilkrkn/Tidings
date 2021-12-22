@@ -1,4 +1,4 @@
-package com.example.tidings.ui.fragments
+package com.example.tidings.ui.fragments.breaking
 
 import androidx.fragment.app.Fragment
 import com.example.tidings.R
