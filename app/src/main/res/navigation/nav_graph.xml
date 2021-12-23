@@ -3,11 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/breakingNewsFragment">
-
+    app:startDestination="@id/breakingTidingsFragment">
     <fragment
-        android:id="@+id/breakingNewsFragment"
+        android:id="@+id/breakingTidingsFragment"
         android:name="com.example.tidings.ui.fragments.breaking.BreakingTidingsFragment"
-        android:label="fragment_breaking_news"
-        tools:layout="@layout/fragment_breaking_news" />
+        android:label="Breaking Tidings"
+        tools:layout="@layout/fragment_breaking_tidings">
+        <action
+            android:id="@+id/action_breakingTidingsFragment_to_articleTidingsFragment"
+            app:destination="@id/articleTidingsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleTidingsFragment"
+        android:name="com.example.tidings.ui.fragments.article.ArticleTidingsFragment"
+        android:label="fragment_tidings_article"
+        tools:layout="@layout/fragment_tidings_article" />
+    <fragment
+        android:id="@+id/savedTidingsFragment"
+        android:name="com.example.tidings.ui.fragments.saved.SavedTidingsFragment"
+        android:label="Saved Tidings"
+        tools:layout="@layout/fragment_saved_tidings">
+        <action
+            android:id="@+id/action_savedTidingsFragment_to_articleTidingsFragment"
+            app:destination="@id/articleTidingsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
 </navigation>

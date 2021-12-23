@@ -1,56 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/orange"
-    tools:context=".ui.fragments.breaking.BreakingTidingsFragment">
+    tools:context=".ui.fragments.saved.SavedTidingsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recycler_view_saved_tidings"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_breaking_news" />
-
+        tools:listitem="@layout/item_breaking_tidings" />
 
     <ProgressBar
-        android:id="@+id/progress_bar"
+        android:id="@+id/progress_bar_saved_tidings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:theme="@style/progressBarStyle"
         android:visibility="gone"
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/text_view_error"
+        android:id="@+id/text_view_error_saved_tidings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/button_retry"
+        android:layout_above="@id/button_retry_saved_tidings"
         android:layout_centerHorizontal="true"
         android:text="Results could not be loaded"
+        android:textColor="@color/black"
         android:visibility="gone"
         tools:visibility="visible" />
 
     <Button
-        android:id="@+id/button_retry"
+        android:id="@+id/button_retry_saved_tidings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:backgroundTint="@color/black"
         android:text="Retry"
-
-        />
+        android:textColor="@color/orange" />
 
     <TextView
-        android:id="@+id/text_view_empty"
+        android:id="@+id/text_view_empty_saved_tidings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="No results for this query"
+        android:textColor="@color/black"
         android:visibility="gone"
-        tools:visibility="visible"
-
-        />
+        tools:visibility="visible" />
 
 </RelativeLayout>
