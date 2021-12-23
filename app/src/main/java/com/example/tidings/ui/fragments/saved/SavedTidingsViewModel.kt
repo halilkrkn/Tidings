@@ -1,4 +1,4 @@
-package com.example.tidings.ui.fragments.breaking
+package com.example.tidings.ui.fragments.saved
 
 import androidx.lifecycle.ViewModel
 import com.example.tidings.data.db.TidingsDao
@@ -7,7 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class BreakingTidingsViewModel @Inject constructor(
+class SavedTidingsViewModel @Inject constructor(
     private val repository: TidingsRepository,
     private val tidingsDao: TidingsDao
 ) : ViewModel() {

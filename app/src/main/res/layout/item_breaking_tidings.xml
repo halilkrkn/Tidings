@@ -7,10 +7,10 @@
     app:cardCornerRadius="15dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="391dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="7dp">
+        android:padding="3dp">
 
         <TextView
             android:id="@+id/text_view_breaking_news_title"

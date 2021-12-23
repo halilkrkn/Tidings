@@ -4,17 +4,34 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3609375" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/drawable/bottom_tab.xml" value="0.3609375" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/drawable/button_click.xml" value="0.3609375" />
         <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/drawable/gradient.xml" value="0.3609375" />
         <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.3609375" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/drawable/ic_baseline_newspaper_24.xml" value="0.3609375" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.3609375" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.3609375" />
         <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/drawable/ic_baseline_update_24.xml" value="0.3609375" />
-        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/layout/activity_tidings.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/layout/fragment_breaking_news.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/layout/fragment_breaking_tidings.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/layout/fragment_saved_tidings.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/layout/fragment_search_tidings.xml" value="0.402676399026764" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/layout/fragment_tidings.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/layout/fragment_tidings_article.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/layout/item_breaking_news.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/layout/item_breaking_tidings.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/layout/item_tidings_breaking_news.xml" value="0.2884963768115942" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/layout/tidings_load_state_footer_and_header.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/menu-v26/menu_tidings_search.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/menu/menu_breaking_tidings.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/halil/GitHub/Tidings/app/src/main/res/menu/menu_tidings_search.xml" value="0.34479166666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="15" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

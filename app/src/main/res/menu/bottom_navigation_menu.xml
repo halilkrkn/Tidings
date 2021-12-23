@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/breakingTidingsFragment"
+        android:icon="@drawable/ic_baseline_newspaper_24"
+        android:title="Breaking" />
+
+    <item
+        android:id="@+id/savedTidingsFragment"
+        android:icon="@drawable/ic_baseline_star_24"
+        android:title="Saved" />
+</menu>
