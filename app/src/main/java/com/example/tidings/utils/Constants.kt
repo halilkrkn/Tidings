@@ -1,7 +1,6 @@
 package com.example.tidings.utils
 
 import com.example.tidings.BuildConfig
-import com.example.tidings.utils.Constants.Companion.API_KEY
 
 class Constants {
     companion object{

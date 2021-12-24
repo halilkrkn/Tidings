@@ -1,6 +1,4 @@
-package com.example.tidings.service
-
-import com.example.tidings.data.models.Article
+package com.example.tidings.data.model
 
 
 data class TidingsResponse(

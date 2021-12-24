@@ -1,14 +1,14 @@
-package com.example.tidings.ui.fragments.breaking
+package com.example.tidings.ui.fragments
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.tidings.R
 import com.example.tidings.databinding.FragmentBreakingTidingsBinding
+import com.example.tidings.ui.viewmodels.BreakingTidingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

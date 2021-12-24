@@ -2,7 +2,7 @@ package com.example.tidings.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.tidings.data.models.Article
+import com.example.tidings.data.model.Article
 import kotlinx.coroutines.flow.Flow
 
 @Dao

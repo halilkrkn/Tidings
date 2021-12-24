@@ -1,4 +1,4 @@
-package com.example.tidings.data.models
+package com.example.tidings.data.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

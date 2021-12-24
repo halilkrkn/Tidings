@@ -1,13 +1,12 @@
-package com.example.tidings.ui.fragments.saved
+package com.example.tidings.ui.fragments
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.tidings.R
-import com.example.tidings.databinding.FragmentBreakingTidingsBinding
 import com.example.tidings.databinding.FragmentSavedTidingsBinding
-import com.example.tidings.ui.fragments.breaking.BreakingTidingsViewModel
+import com.example.tidings.ui.viewmodels.SavedTidingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

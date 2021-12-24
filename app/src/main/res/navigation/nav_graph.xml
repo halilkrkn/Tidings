@@ -6,7 +6,7 @@
     app:startDestination="@id/breakingTidingsFragment">
     <fragment
         android:id="@+id/breakingTidingsFragment"
-        android:name="com.example.tidings.ui.fragments.breaking.BreakingTidingsFragment"
+        android:name="com.example.tidings.ui.fragments.BreakingTidingsFragment"
         android:label="Breaking Tidings"
         tools:layout="@layout/fragment_breaking_tidings">
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/articleTidingsFragment"
-        android:name="com.example.tidings.ui.fragments.article.ArticleTidingsFragment"
+        android:name="com.example.tidings.ui.fragments.ArticleTidingsFragment"
         android:label="fragment_tidings_article"
         tools:layout="@layout/fragment_tidings_article" />
     <fragment
         android:id="@+id/savedTidingsFragment"
-        android:name="com.example.tidings.ui.fragments.saved.SavedTidingsFragment"
+        android:name="com.example.tidings.ui.fragments.SavedTidingsFragment"
         android:label="Saved Tidings"
         tools:layout="@layout/fragment_saved_tidings">
         <action

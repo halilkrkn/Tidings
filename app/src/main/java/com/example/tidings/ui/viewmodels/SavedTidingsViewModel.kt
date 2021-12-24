@@ -1,4 +1,4 @@
-package com.example.tidings.ui.fragments.saved
+package com.example.tidings.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import com.example.tidings.data.db.TidingsDao

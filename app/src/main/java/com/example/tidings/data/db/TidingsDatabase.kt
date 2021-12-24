@@ -2,7 +2,7 @@ package com.example.tidings.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.tidings.data.models.Article
+import com.example.tidings.data.model.Article
 
 @Database(
     entities = [Article::class],

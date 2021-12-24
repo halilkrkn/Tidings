@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.tidings.BuildConfig
 import com.example.tidings.data.db.TidingsDatabase
-import com.example.tidings.service.api.TidingsApi
+import com.example.tidings.api.TidingsApiService
 import com.example.tidings.utils.Constants.Companion.BASE_URL
 import com.example.tidings.utils.Constants.Companion.TIDINGS_DATABASE_NAME
 import dagger.Module
@@ -49,8 +49,8 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideNewsApi(retrofit: Retrofit): TidingsApi =
-        retrofit.create(TidingsApi::class.java)
+    fun provideNewsApi(retrofit: Retrofit): TidingsApiService =
+        retrofit.create(TidingsApiService::class.java)
 
 
     // TODO: 22.12.2021 Room Database Kurulumu Yapıldı. 
