@@ -1,13 +1,13 @@
-package com.example.tidings.service.api
+package com.example.tidings.api
 
-import com.example.tidings.service.TidingsResponse
+import com.example.tidings.data.model.TidingsResponse
 import com.example.tidings.utils.Constants.Companion.API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
 
-// Apinin arayüzünü yazdık.
-interface TidingsApi {
+// Apinin Servis arayüzünü yazdık.
+interface TidingsApiService {
 
     // Burada dünyadaki tüm haberleri çekip gösteriyoruz
     @Headers("Authorization:$API_KEY")

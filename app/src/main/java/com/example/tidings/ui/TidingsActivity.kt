@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_tidings.*
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class TidingsActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
