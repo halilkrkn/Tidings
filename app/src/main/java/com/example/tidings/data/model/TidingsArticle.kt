@@ -9,7 +9,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @Entity(tableName = "tidings_table")
-data class Article(
+data class TidingsArticle(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
     val author: String,

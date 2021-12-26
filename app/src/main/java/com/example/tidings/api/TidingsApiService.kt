@@ -11,22 +11,21 @@ interface TidingsApiService {
 
     // Burada dünyadaki tüm haberleri çekip gösteriyoruz
     @Headers("Authorization:$API_KEY")
-    @GET("v2/everything")
-    fun searchForTidings(
+    @GET("/v2/everything")
+    suspend fun searchForTidings(
         @Query("q") query: String,
         @Query("page") page: Int,
-        @Query("page_size") pageSize: Int
+        @Query("pageSize") pageSize: Int,
     ): TidingsResponse
 
     // Burada ise ülkelere göre haberleri çekiyoruz. Yani ülkelere göre filtreleyip haberleri çekiyoruz.
     @Headers("Authorization:$API_KEY")
     @GET("v2/top-headlines")
     fun breakingTidings(
-
         //        @Query("q") query: String,
         @Query("country") countryCode: String = "tr",
         @Query("page") page: Int,
-        @Query("page_size") pageSize: Int
+        @Query("page_size") pageSize: Int,
     ): TidingsResponse
 
 
