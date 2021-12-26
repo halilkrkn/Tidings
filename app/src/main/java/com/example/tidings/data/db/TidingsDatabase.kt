@@ -2,10 +2,10 @@ package com.example.tidings.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.tidings.data.model.Article
+import com.example.tidings.data.model.TidingsArticle
 
 @Database(
-    entities = [Article::class],
+    entities = [TidingsArticle::class],
     version = 1
 )
 abstract class TidingsDatabase: RoomDatabase() {
