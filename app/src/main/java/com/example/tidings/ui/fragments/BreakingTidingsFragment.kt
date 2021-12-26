@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.example.tidings.R
 import com.example.tidings.databinding.FragmentBreakingTidingsBinding
 import com.example.tidings.ui.adapters.TidingsAdapter
+import com.example.tidings.ui.adapters.TidingsLoadStateAdapter
 import com.example.tidings.ui.viewmodels.BreakingTidingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,14 +30,19 @@ class BreakingTidingsFragment : Fragment(R.layout.fragment_breaking_tidings) {
         val adapter = TidingsAdapter()
         binding.apply {
             recyclerViewBreaking.setHasFixedSize(true)
-            recyclerViewBreaking.adapter = adapter
+            // LoadStateAdapter da oluşturmuş olduğumuz hata görüntüsünü recyclerview de göstermek için adapter.withLoadStateHeaderAndFooter methodunu kullanıyoruz.
+            // Böylelikle hata mesajımız olan desingımız recyclerviewın hem header hemde footer kısmında gözükmektedir.
+            recyclerViewBreaking.adapter = adapter.withLoadStateHeaderAndFooter(
+                header = TidingsLoadStateAdapter { adapter.retry() },
+                footer = TidingsLoadStateAdapter { adapter.retry() }
+
+            )
         }
 
         // viewmodel içerisinde tanımlanmış olan tidings değişkenini çağırdık.
-        viewModel.tidings.observe(viewLifecycleOwner){
-            adapter.submitData(viewLifecycleOwner.lifecycle,it)
+        viewModel.tidings.observe(viewLifecycleOwner) {
+            adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
-
 
         // Menuyü fragmentte bind ettik yani bağladık.
         setHasOptionsMenu(true)
