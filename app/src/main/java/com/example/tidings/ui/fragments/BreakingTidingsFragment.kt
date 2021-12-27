@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.tidings.R
@@ -55,6 +56,29 @@ class BreakingTidingsFragment : Fragment(R.layout.fragment_breaking_tidings) {
 
         // Menuyü Uı da gösterdik
         inflater.inflate(R.menu.menu_tidings_search, menu)
+
+        // TODO: 27.12.2021
+        //  Bu kısımda  SearchView Functionality özelliğini BreakingTidingsFragmente bind etmiş olduk.
+        // Yani böylelikle kullanıcıdan aldığımız query değerini viewmodeldeki searchTidings fonksiyonuna atamış olduk.
+        // Sonra ise bu alınan query string değeri sayesinde UI da istenilen değeri filtreleme yani arama kısmı sayesinde göstermiş olduk.
+        val searchItem = menu.findItem(R.id.menu_tidings_search)
+        val searchView = searchItem.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    binding.recyclerViewBreaking.scrollToPosition(0)
+                    viewModel.searchTidings(query)
+                    searchView.clearFocus()
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+
+        })
+
 
     }
 
