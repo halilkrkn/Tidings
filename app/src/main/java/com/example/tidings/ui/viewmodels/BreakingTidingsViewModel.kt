@@ -13,8 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BreakingTidingsViewModel @Inject constructor(
-    private val repository: TidingsRepository,
-    private val tidingsDao: TidingsDao
+    private val repository: TidingsRepository
 ) : ViewModel() {
 
     private val currentQuery = MutableLiveData(DEFAULT_QUERY)
@@ -23,8 +22,11 @@ class BreakingTidingsViewModel @Inject constructor(
         repository.getTidingsSearchResults(queryString).cachedIn(viewModelScope)
     }
 
-    // burada search yapamak istediğimiz photoların isimlerine göre filtreleme yapmak için gerekli string değerleri alıyoruz.
-    fun searchPhotos(query: String){
+    // TODO: 27.12.2021
+    // burada search yapamak istediğimiz haberleri filtreleme yapmak için gerekli string değerleri kullanıcıdan alıyoruz.
+    // Ve Alınan string değer yani query i currentQuery nin yeni değer iolarka atıyoruz.
+    // Sonrasında ise filtreleme işlemi yapılmış oluyor ve UI'da istenilen değerdeki string(query) sayesindeki haber karşımıza çıkıyor.
+    fun searchTidings(query: String){
         currentQuery.value = query
     }
 }
