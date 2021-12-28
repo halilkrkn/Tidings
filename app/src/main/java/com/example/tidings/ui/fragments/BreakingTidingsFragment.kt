@@ -8,20 +8,24 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.example.tidings.R
+import com.example.tidings.data.model.TidingsArticle
 import com.example.tidings.databinding.FragmentBreakingTidingsBinding
 import com.example.tidings.ui.adapters.TidingsAdapter
 import com.example.tidings.ui.adapters.TidingsLoadStateAdapter
 import com.example.tidings.ui.viewmodels.BreakingTidingsViewModel
+import com.example.tidings.utils.OnItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BreakingTidingsFragment : Fragment(R.layout.fragment_breaking_tidings) {
+class BreakingTidingsFragment : Fragment(R.layout.fragment_breaking_tidings),OnItemClickListener {
 
     private val viewModel by viewModels<BreakingTidingsViewModel>()
     private var _binding: FragmentBreakingTidingsBinding? = null
     private val binding get() = _binding!!
+    lateinit var adapter: TidingsAdapter
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,7 +34,7 @@ class BreakingTidingsFragment : Fragment(R.layout.fragment_breaking_tidings) {
         _binding = FragmentBreakingTidingsBinding.bind(view)
 
         // RecyclerView Adapter Tanımlandı.
-        val adapter = TidingsAdapter()
+         adapter = TidingsAdapter(this)
         binding.apply {
             recyclerViewBreaking.setHasFixedSize(true)
             // LoadStateAdapter da oluşturmuş olduğumuz hata görüntüsünü recyclerview de göstermek için adapter.withLoadStateHeaderAndFooter methodunu kullanıyoruz.
@@ -73,7 +77,6 @@ class BreakingTidingsFragment : Fragment(R.layout.fragment_breaking_tidings) {
             }
         }
 
-
         // Menuyü fragmentte bind ettik yani bağladık.
         setHasOptionsMenu(true)
     }
@@ -111,9 +114,17 @@ class BreakingTidingsFragment : Fragment(R.layout.fragment_breaking_tidings) {
 
     }
 
+    // Burada ise TidingsAdapter içesinde RecyclerView içerisindeki herbir item'a tıklama(click) özelliği getirildi ve bu tıklama sayesinde ArticleTidingsFragment e navigate ettik yani o sayfaya yönlendirdik.
+    override fun onItemClick(tidingsArticle: TidingsArticle) {
+        val action = BreakingTidingsFragmentDirections.actionBreakingTidingsFragmentToArticleTidingsFragment(tidingsArticle)
+        findNavController().navigate(action)
+    }
+
     // ViewBinding işlemi yapıldığğında onDestroyView methodunu çağırıp bindig i null olarak belirtmemiz geerek çünkü Breaking Tidings Fragmentte crashlenme olmaması için
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }

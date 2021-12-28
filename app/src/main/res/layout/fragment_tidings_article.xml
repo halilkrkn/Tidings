@@ -7,7 +7,7 @@
     tools:context=".ui.fragments.ArticleTidingsFragment">
 
     <WebView
-        android:id="@+id/webView"
+        android:id="@+id/webViewArticle"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -15,8 +15,8 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="65dp"
         android:src="@drawable/ic_baseline_star_24"
         app:backgroundTint="@color/orange"
         app:fabSize="normal"
