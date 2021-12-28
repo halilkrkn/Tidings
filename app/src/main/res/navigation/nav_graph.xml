@@ -20,8 +20,12 @@
     <fragment
         android:id="@+id/articleTidingsFragment"
         android:name="com.example.tidings.ui.fragments.ArticleTidingsFragment"
-        android:label="fragment_tidings_article"
-        tools:layout="@layout/fragment_tidings_article" />
+        android:label="Article Tidings"
+        tools:layout="@layout/fragment_tidings_article">
+        <argument
+            android:name="tidingsArticle"
+            app:argType="com.example.tidings.data.model.TidingsArticle" />
+    </fragment>
     <fragment
         android:id="@+id/savedTidingsFragment"
         android:name="com.example.tidings.ui.fragments.SavedTidingsFragment"

@@ -10,8 +10,9 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.tidings.R
 import com.example.tidings.data.model.TidingsArticle
 import com.example.tidings.databinding.ItemBreakingTidingsBinding
+import com.example.tidings.utils.OnItemClickListener
 
-class TidingsAdapter : PagingDataAdapter<TidingsArticle, TidingsAdapter.TidingsViewHolder>(TIDINGS_COMPARATOR) {
+class TidingsAdapter(private val listener: OnItemClickListener) : PagingDataAdapter<TidingsArticle, TidingsAdapter.TidingsViewHolder>(TIDINGS_COMPARATOR) {
 
     // Bu class sayesinde RecyclerView mantığı gören PagingDataAdapterı için gerekli tüm aşamalar gerçekleştirip ViewBinding kullanıldığı için ItemBreakingTidingsBinding.xml ine bind ettik yani bağladık.
     // Sonra ise o fragment içerisinde oluşturduğumuz özelliklere tanımlamalar verdik ve UI da göstermesini istedik.
@@ -32,6 +33,21 @@ class TidingsAdapter : PagingDataAdapter<TidingsArticle, TidingsAdapter.TidingsV
                 textViewBreakingNewsDate.text = tidings.publishedAt
             }
         }
+
+
+        // Burada RecyclerView içerisindeki her bir itema tıklama özelliği getirdik.
+        init{
+            binding.root.setOnClickListener{
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION){
+                    val item = getItem(position)
+                    if (item != null)
+                        listener.onItemClick(item)
+                }
+            }
+        }
+
+
 
     }
 
