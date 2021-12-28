@@ -5,8 +5,10 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import com.example.tidings.R
 import com.example.tidings.databinding.FragmentBreakingTidingsBinding
 import com.example.tidings.ui.adapters.TidingsAdapter
@@ -36,14 +38,41 @@ class BreakingTidingsFragment : Fragment(R.layout.fragment_breaking_tidings) {
             recyclerViewBreaking.adapter = adapter.withLoadStateHeaderAndFooter(
                 header = TidingsLoadStateAdapter { adapter.retry() },
                 footer = TidingsLoadStateAdapter { adapter.retry() }
-
             )
+
+            // Burada ise BreakingFragment içrsidneki hata mesajı içerisnde ki Retry BUtonuna tekrardan verileri çekmesi için butonu aktifleştirdik.
+            buttonRetryBreaking.setOnClickListener {
+                adapter.retry()
+            }
         }
 
         // viewmodel içerisinde tanımlanmış olan tidings değişkenini çağırdık.
         viewModel.tidings.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
+
+        // Uygulama ilk açıkldığında internet bağlatısı yoksa veya
+        // uygulama içerisinde arama işlemi yapacakken internet erişimi olmadığı halde arama yaptığımızda apiden veriler gelmiyorsa karşımaza bir uyarı mesajı çıkacak.
+        // İnternet geldiğinde ise bu uyarı mesajı içerisinde bulunan Retry butonu sayesinde verileri tekrardan çekebileceğiz.
+        adapter.addLoadStateListener { loadState ->
+            binding.apply {
+                recyclerViewBreaking.isVisible = loadState.source.refresh is LoadState.NotLoading
+                progressBarBreaking.isVisible = loadState.source.refresh is LoadState.Loading
+                buttonRetryBreaking.isVisible = loadState.source.refresh is LoadState.Error
+                textViewErrorBreaking.isVisible = loadState.source.refresh is LoadState.Error
+
+                if (loadState.source.refresh is LoadState.NotLoading &&
+                    loadState.append.endOfPaginationReached &&
+                    adapter.itemCount < 1
+                ) {
+                    recyclerViewBreaking.isVisible = false
+                    textViewEmptyBreaking.isVisible = true
+                } else {
+                    textViewEmptyBreaking.isVisible = false
+                }
+            }
+        }
+
 
         // Menuyü fragmentte bind ettik yani bağladık.
         setHasOptionsMenu(true)
