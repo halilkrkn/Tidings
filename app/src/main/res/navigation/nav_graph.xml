@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/articleTidingsFragment"
         android:name="com.example.tidings.ui.fragments.ArticleTidingsFragment"
-        android:label="Article Tidings"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_tidings_article">
         <argument
             android:name="tidingsArticle"
