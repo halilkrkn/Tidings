@@ -7,7 +7,7 @@
     tools:context=".ui.fragments.ArticleTidingsFragment">
 
     <WebView
-        android:id="@+id/webViewArticle"
+        android:id="@+id/webViewArticleTidings"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
