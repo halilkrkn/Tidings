@@ -60,7 +60,9 @@ object AppModule {
         context,
         TidingsDatabase::class.java,
         TIDINGS_DATABASE_NAME
-    ).build()
+    )
+        .fallbackToDestructiveMigration()
+        .build()
 
     @Singleton
     @Provides
