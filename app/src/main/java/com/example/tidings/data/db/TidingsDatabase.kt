@@ -6,8 +6,10 @@ import com.example.tidings.data.model.TidingsArticle
 
 @Database(
     entities = [TidingsArticle::class],
-    version = 1
+    version = 7,
+    exportSchema = false
 )
+
 abstract class TidingsDatabase: RoomDatabase() {
 
     abstract fun getTidingsDao(): TidingsDao

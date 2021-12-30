@@ -1,6 +1,7 @@
 package com.example.tidings.data.db
 
 import androidx.lifecycle.LiveData
+import androidx.paging.PagingData
 import androidx.room.*
 import com.example.tidings.data.model.TidingsArticle
 import kotlinx.coroutines.flow.Flow
@@ -9,15 +10,15 @@ import kotlinx.coroutines.flow.Flow
 interface TidingsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE )
-    fun insert(article: TidingsArticle)
+    suspend fun insert(article: TidingsArticle)
 
     @Delete
-    fun delete(article: TidingsArticle)
+    suspend fun delete(article: TidingsArticle)
 
-    @Query("SELECT * FROM tidings_table")
-    fun getAllPhotos(): LiveData<List<TidingsArticle>>
+    @Query("SELECT * FROM tidingsTable")
+    fun getAllArticle(): LiveData<List<TidingsArticle>>
 
-    @Query("SELECT * FROM tidings_table WHERE title LIKE '%' || :searchQuery || '%' ORDER BY title DESC")
+    @Query("SELECT * FROM tidingsTable WHERE title LIKE '%' || :searchQuery || '%' ORDER BY title DESC")
     fun searchByTidings(searchQuery: String): Flow<List<TidingsArticle>>
 
 }

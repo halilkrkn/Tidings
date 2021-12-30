@@ -77,7 +77,7 @@ class TidingsAdapter(private val listener: OnItemClickListener) : PagingDataAdap
                 oldItem: TidingsArticle,
                 newItem: TidingsArticle
             ): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.Id == newItem.Id
             }
 
             override fun areContentsTheSame(

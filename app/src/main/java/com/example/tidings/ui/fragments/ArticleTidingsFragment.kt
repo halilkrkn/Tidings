@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.tidings.R
 import com.example.tidings.databinding.FragmentTidingsArticleBinding
 import com.example.tidings.ui.viewmodels.ArticleTidingsFragmentViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,6 +19,8 @@ class ArticleTidingsFragment : Fragment(R.layout.fragment_tidings_article) {
     // nav_graph da ArticleTidingsFragment in data lara ulaşması için ona argüment atadık  ve bu argüment ArticleTidings'dir.
     // Sonra ise navArgs sayesinde bunu articleTidingsArgs olarak atadık ki artık bu sayede ArticleTidings içerisindeki verilere ulaşabileceğiz.
     private val articleTidingsArgs by navArgs<ArticleTidingsFragmentArgs>()
+
+    private val viewModel by viewModels<ArticleTidingsFragmentViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,7 +40,15 @@ class ArticleTidingsFragment : Fragment(R.layout.fragment_tidings_article) {
             }
             // Buraya fonksiyonumuzu çağırmış olduk ve ilgili haber sitesinin name ni fonksiyonumuza atamış olduk.
             val actionBarTitle = articleTidings.source.name
-            actionBarTitle(actionBarTitle)
+            actionBarTitle(actionBarTitle!!)
+
+
+            // Webview içerisinde haberleri kaydetmek için bir FloatingActionButton mevcut ve bu sayede istediğimiz haberleri bu buton sayesinde veritabanına kayıt ediyoruz.
+            fab.setOnClickListener { view ->
+                viewModel.insertArticleTidings(articleTidings)
+                Snackbar.make(view,"Article Saved Successfully", Snackbar.LENGTH_LONG).show()
+            }
+
         }
     }
 
