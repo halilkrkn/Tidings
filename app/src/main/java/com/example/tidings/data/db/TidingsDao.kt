@@ -18,7 +18,5 @@ interface TidingsDao {
     @Query("SELECT * FROM tidingsTable")
     fun getAllArticle(): LiveData<List<TidingsArticle>>
 
-    @Query("SELECT * FROM tidingsTable WHERE title LIKE '%' || :searchQuery || '%' ORDER BY title DESC")
-    fun searchByTidings(searchQuery: String): Flow<List<TidingsArticle>>
 
 }

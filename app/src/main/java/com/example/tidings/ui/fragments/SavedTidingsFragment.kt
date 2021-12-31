@@ -2,6 +2,7 @@ package com.example.tidings.ui.fragments
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -24,14 +25,20 @@ class SavedTidingsFragment : Fragment(R.layout.fragment_saved_tidings), OnItemCl
     private val viewModel by viewModels<SavedTidingsViewModel>()
     private var _binding: FragmentSavedTidingsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: SavedTidingsAdapter
+    private lateinit var savedAdapter: SavedTidingsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = FragmentSavedTidingsBinding.bind(view)
 
-        setupRecyclerView()
+        savedAdapter = SavedTidingsAdapter(this)
+        binding.recyclerViewSavedTidings.apply {
+            setHasFixedSize(true)
+            adapter = savedAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
@@ -47,11 +54,12 @@ class SavedTidingsFragment : Fragment(R.layout.fragment_saved_tidings), OnItemCl
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.bindingAdapterPosition
-                val article = adapter.differ.currentList[position]
+                val article = savedAdapter.differ.currentList[position]
                 viewModel.deleteArticleTidings(article)
                 Snackbar.make(view, "Successfully deleted article", Snackbar.LENGTH_LONG).apply {
                     setAction("Undo") {
                         viewModel.insertArticleTidings(article)
+
                     }
                     show()
                 }
@@ -62,8 +70,9 @@ class SavedTidingsFragment : Fragment(R.layout.fragment_saved_tidings), OnItemCl
             attachToRecyclerView(binding.recyclerViewSavedTidings)
         }
 
-        viewModel.getSaveTidings().observe(viewLifecycleOwner) {
-            adapter.differ.submitList(it)
+        viewModel.getSaveTidings().observe(viewLifecycleOwner){ articles ->
+            savedAdapter.differ.submitList(articles)
+
         }
 
     }
@@ -75,16 +84,6 @@ class SavedTidingsFragment : Fragment(R.layout.fragment_saved_tidings), OnItemCl
             )
         findNavController().navigate(action)
     }
-
-    private fun setupRecyclerView() {
-        adapter = SavedTidingsAdapter(this)
-        binding.recyclerViewSavedTidings.apply {
-            setHasFixedSize(true)
-            adapter = adapter
-            layoutManager = LinearLayoutManager(activity)
-        }
-    }
-
 
     // ViewBinding işlemi yapıldığğında onDestroyView methodunu çağırıp bindig i null olarak belirtmemiz geerek çünkü Saved Tidings Fragmentte crashlenme olmaması için
     override fun onDestroyView() {

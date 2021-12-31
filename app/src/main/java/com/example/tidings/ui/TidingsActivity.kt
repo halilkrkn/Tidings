@@ -28,20 +28,20 @@ class TidingsActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
         navController = navHostFragment.findNavController()
 
-
-        // Bottom Navigation Kurulumu Yapıldı.
-        bottomNavigationView.setupWithNavController(navController)
-        // Burada appBarda Geri Ok tuşu gözükmesi ve Hangi sayfada olunduğunu (Breaking, Saved gibi appBarda yazan) appBarda görmek için oluşturuldu.
-        NavigationUI.setupActionBarWithNavController(this, navController)
-
-        // TODO: 23.12.2021  Diğer Başka Bir Bottom-Navigation ve AppBarConfiguration Kurulumu
+// TODO: 23.12.2021  Diğer Başka Bir Bottom-Navigation ve AppBarConfiguration Kurulumu
 //        // Bottom Navigation Kurulumu Yapıldı.
-//        val navView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
-//        navView.setupWithNavController(navController)
+//        bottomNavigationView.setupWithNavController(navController)
+//        // Burada appBarda Geri Ok tuşu gözükmesi ve Hangi sayfada olunduğunu (Breaking, Saved gibi appBarda yazan) appBarda görmek için oluşturuldu.
+//        NavigationUI.setupActionBarWithNavController(this, navController)
 
-        // Burada appBarda Geri Ok tuşu gözükmesi ve Hangi sayfada olunduğunu (Breaking, Saved gibi appBarda yazan) appBarda görmek için oluşturuldu.
-//        val appBarConfiguration = AppBarConfiguration(navController.graph)
-//        setupActionBarWithNavController(navController, appBarConfiguration)
+        
+        // Bottom Navigation Kurulumu Yapıldı.
+        val navView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
+        navView.setupWithNavController(navController)
+
+//         Burada appBarda Geri Ok tuşu gözükmesi ve Hangi sayfada olunduğunu (Breaking, Saved gibi appBarda yazan) appBarda görmek için oluşturuldu.
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        setupActionBarWithNavController(navController, appBarConfiguration)
 
 
     }
