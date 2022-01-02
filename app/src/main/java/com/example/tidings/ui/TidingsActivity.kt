@@ -34,7 +34,7 @@ class TidingsActivity : AppCompatActivity() {
 //        // Burada appBarda Geri Ok tuşu gözükmesi ve Hangi sayfada olunduğunu (Breaking, Saved gibi appBarda yazan) appBarda görmek için oluşturuldu.
 //        NavigationUI.setupActionBarWithNavController(this, navController)
 
-        
+
         // Bottom Navigation Kurulumu Yapıldı.
         val navView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         navView.setupWithNavController(navController)

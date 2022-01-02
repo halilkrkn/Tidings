@@ -10,10 +10,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ArticleTidingsFragmentViewModel @Inject constructor(
+class ArticleTidingsViewModel @Inject constructor(
     private val repository: TidingsRepository,
 ) : ViewModel() {
 
+    // Webview içerisindeki floating Button sayesinde verileri database e insert etmek için
     fun insertArticleTidings(article: TidingsArticle) = viewModelScope.launch {
         repository.insertArticleTidings(article)
     }
