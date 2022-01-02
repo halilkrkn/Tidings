@@ -14,27 +14,30 @@ import com.example.tidings.databinding.ItemBreakingTidingsBinding
 import com.example.tidings.utils.OnItemClickListener
 import kotlinx.android.synthetic.main.item_breaking_tidings.view.*
 
-class SavedTidingsAdapter(private val listener: OnItemClickListener): RecyclerView.Adapter<SavedTidingsAdapter.SavedTidingsViewHolder>() {
+class SavedTidingsAdapter(private val listener: OnItemClickListener) :
+    RecyclerView.Adapter<SavedTidingsAdapter.SavedTidingsViewHolder>() {
 
 
-    inner class SavedTidingsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    //Recyclerview Adapter için SavedTidingsViewHolder ı oluşturduk.
+    inner class SavedTidingsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     //DiffUtil, RecyclerView adapterındaki verilerin daha verimli bir şekilde güncellenmesi için kullanılır.
-    private val differCallback = object: DiffUtil.ItemCallback<TidingsArticle>(){
+    private val differCallback = object : DiffUtil.ItemCallback<TidingsArticle>() {
 
         override fun areItemsTheSame(oldItem: TidingsArticle, newItem: TidingsArticle): Boolean {
             return oldItem.Id == newItem.Id
-
         }
 
         override fun areContentsTheSame(oldItem: TidingsArticle, newItem: TidingsArticle): Boolean {
-            return  oldItem == newItem
+            return oldItem == newItem
         }
-
     }
 
-     val differ = AsyncListDiffer(this,differCallback)
+    //    differCallback'i AsyncListDiffer methodununu içerisine koyduktan sonra differ değişkenine atadık.
+    val differ = AsyncListDiffer(this, differCallback)
 
+
+    // Recyclerview ı create ettik.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SavedTidingsViewHolder {
         return SavedTidingsViewHolder(
             LayoutInflater.from(parent.context).inflate(
@@ -45,6 +48,12 @@ class SavedTidingsAdapter(private val listener: OnItemClickListener): RecyclerVi
         )
     }
 
+    //    Burada verileri belli bir güncel liste boyutuna göre boyutlandırdık.
+    override fun getItemCount(): Int {
+        return differ.currentList.size
+    }
+
+    //
     override fun onBindViewHolder(holder: SavedTidingsViewHolder, position: Int) {
         val article = differ.currentList[position]
         holder.itemView.apply {
@@ -59,26 +68,21 @@ class SavedTidingsAdapter(private val listener: OnItemClickListener): RecyclerVi
             text_view_breaking_news_description.text = article.description
             text_view_breaking_news_date.text = article.publishedAt
 
-            setOnClickListener{
+            setOnClickListener {
                 onClick(holder)
             }
         }
     }
-    
-    private fun onClick(holder: SavedTidingsViewHolder){
+
+    // Recyclerview içerisindeki tüm itemlara onClik özelliği getirildi.
+    private fun onClick(holder: SavedTidingsViewHolder) {
         val position = holder.bindingAdapterPosition
-        if (position != RecyclerView.NO_POSITION){
+        if (position != RecyclerView.NO_POSITION) {
             val item = differ.currentList[position]
             if (item != null)
                 listener.onItemClick(item)
         }
     }
-
-    override fun getItemCount(): Int {
-        return differ.currentList.size
-    }
-
-
 
 
 }

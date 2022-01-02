@@ -14,14 +14,17 @@ class SavedTidingsViewModel @Inject constructor(
     private val repository: TidingsRepository,
 ) : ViewModel() {
 
+    // Database e haberleri insert etmek için repositoryden o fonksiyonu çekiyoruz.
     fun deleteArticleTidings(article: TidingsArticle) = viewModelScope.launch{
         repository.deleteArticleTidings(article)
     }
 
+    // Saved sayfasındaki kayıt altına alınmış haberleri silmek için repositoryden o fonksiyonu çekiyoruz.
     fun insertArticleTidings(article: TidingsArticle) = viewModelScope.launch {
         repository.insertArticleTidings(article)
     }
 
+    // Saved Sayfasına kayıt altına almış olduğumuz verileri liste halinde gösterebilmek için repositoryden o fonksiyonu çekiyoruz.
     fun getSaveTidings() = repository.saveArticle()
 
 }

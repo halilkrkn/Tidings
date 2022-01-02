@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.tidings.R
 import com.example.tidings.databinding.FragmentTidingsArticleBinding
-import com.example.tidings.ui.viewmodels.ArticleTidingsFragmentViewModel
+import com.example.tidings.ui.viewmodels.ArticleTidingsViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,7 +20,7 @@ class ArticleTidingsFragment : Fragment(R.layout.fragment_tidings_article) {
     // Sonra ise navArgs sayesinde bunu articleTidingsArgs olarak atadık ki artık bu sayede ArticleTidings içerisindeki verilere ulaşabileceğiz.
     private val articleTidingsArgs by navArgs<ArticleTidingsFragmentArgs>()
 
-    private val viewModel by viewModels<ArticleTidingsFragmentViewModel>()
+    private val viewModel by viewModels<ArticleTidingsViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

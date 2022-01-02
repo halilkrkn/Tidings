@@ -40,6 +40,8 @@ class SavedTidingsFragment : Fragment(R.layout.fragment_saved_tidings), OnItemCl
         }
 
 
+        // Save edilmiş olan haberleri kaldırmak için saga vya sola hareketi sağlanarak saved durumundan çıkarıyoruzz ve databasedende siliyoruz.
+        // Eğer silme esnasında silinmesini istemiyorsakda geri al butonu sayesinde o sildiğimiz veriyi tekrardan geri getiriyoruz.
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
@@ -52,6 +54,7 @@ class SavedTidingsFragment : Fragment(R.layout.fragment_saved_tidings), OnItemCl
                 return true
             }
 
+            // Burada silme ve geri alma işlemi için gerekli komutlar yazıldı.
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.bindingAdapterPosition
                 val article = savedAdapter.differ.currentList[position]
@@ -59,24 +62,24 @@ class SavedTidingsFragment : Fragment(R.layout.fragment_saved_tidings), OnItemCl
                 Snackbar.make(view, "Successfully deleted article", Snackbar.LENGTH_LONG).apply {
                     setAction("Undo") {
                         viewModel.insertArticleTidings(article)
-
                     }
                     show()
                 }
             }
         }
 
+//        Burada oluşturduğumuz itemTouchHelperCallback değişkenini çağırıp recyclerview a atadık
         ItemTouchHelper(itemTouchHelperCallback).apply {
             attachToRecyclerView(binding.recyclerViewSavedTidings)
         }
 
-        viewModel.getSaveTidings().observe(viewLifecycleOwner){ articles ->
+        // Burada view Model içerisindeki getSaveTidings() fonksiyonu sayesinde veritabanına saved edilmiş verileri SaveTidingsFragmen'i içerisinsinde listeledik.
+         viewModel.getSaveTidings().observe(viewLifecycleOwner) { articles ->
             savedAdapter.differ.submitList(articles)
-
         }
-
     }
 
+    // SaveTidingsFragment içerisinde listelenmiş olan kayıt altındaki haberlerin üzerine tıklanarak yine haberlerin detayına erişilmesi sağlandı.
     override fun onItemClick(tidingsArticle: TidingsArticle) {
         val action =
             SavedTidingsFragmentDirections.actionSavedTidingsFragmentToArticleTidingsFragment(
