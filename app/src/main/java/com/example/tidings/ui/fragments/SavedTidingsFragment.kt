@@ -1,7 +1,10 @@
 package com.example.tidings.ui.fragments
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -74,10 +77,43 @@ class SavedTidingsFragment : Fragment(R.layout.fragment_saved_tidings), OnItemCl
         }
 
         // Burada view Model içerisindeki getSaveTidings() fonksiyonu sayesinde veritabanına saved edilmiş verileri SaveTidingsFragmen'i içerisinsinde listeledik.
-         viewModel.getSaveTidings().observe(viewLifecycleOwner) { articles ->
+        viewModel.getSaveTidings().observe(viewLifecycleOwner) { articles ->
             savedAdapter.differ.submitList(articles)
         }
+
+        viewModel.searchFlow.observe(viewLifecycleOwner){ articles ->
+            savedAdapter.differ.submitList(articles)
+        }
+
+        setHasOptionsMenu(true)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        inflater.inflate(R.menu.menu_tidings_search, menu)
+
+        val searchItem = menu.findItem(R.id.menu_tidings_search)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null){
+                    binding.recyclerViewSavedTidings.scrollToPosition(0)
+                    viewModel.search(query)
+                    searchView.clearFocus()
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+
+        })
+
+    }
+
 
     // SaveTidingsFragment içerisinde listelenmiş olan kayıt altındaki haberlerin üzerine tıklanarak yine haberlerin detayına erişilmesi sağlandı.
     override fun onItemClick(tidingsArticle: TidingsArticle) {
