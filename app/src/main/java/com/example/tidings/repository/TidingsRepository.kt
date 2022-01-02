@@ -38,4 +38,7 @@ class TidingsRepository @Inject constructor(
     suspend fun deleteArticleTidings(article: TidingsArticle) = tidingsDatabase.getTidingsDao().delete(article)
 
     fun saveArticle() = tidingsDatabase.getTidingsDao().getAllArticle()
+
+    fun searchSavedName(searchPhotos: String) = tidingsDatabase.getTidingsDao().searchSavedName(searchPhotos)
+
 }
