@@ -81,6 +81,7 @@ class SavedTidingsFragment : Fragment(R.layout.fragment_saved_tidings), OnItemCl
             savedAdapter.differ.submitList(articles)
         }
 
+        //Burada ise veritabanına kayıt edilmiş veriler içerisinde search işlemi yapıldıktan sonra kullanıcının yazdığı string değerinin karşılığı olan haberleri tekrardan Saved sayfasında sıralıyor.
         viewModel.searchFlow.observe(viewLifecycleOwner){ articles ->
             savedAdapter.differ.submitList(articles)
         }
@@ -88,11 +89,15 @@ class SavedTidingsFragment : Fragment(R.layout.fragment_saved_tidings), OnItemCl
         setHasOptionsMenu(true)
     }
 
+    //Search menu kurulumu yapıldı.
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
         inflater.inflate(R.menu.menu_tidings_search, menu)
 
+        //  Bu kısımda  SearchView Functionality özelliğini SavedTidingsFragmente bind etmiş olduk.
+        // Yani böylelikle kullanıcıdan aldığımız query değerini viewmodeldeki searchSavedName fonksiyonuna atamış olduk.
+        // Sonra ise bu alınan query string değeri sayesinde UI da istenilen değeri filtreleme yani arama yaparak istenilen aramaya dair olan haberleri göstermiş olduk.
         val searchItem = menu.findItem(R.id.menu_tidings_search)
         val searchView = searchItem.actionView as SearchView
 
@@ -100,7 +105,7 @@ class SavedTidingsFragment : Fragment(R.layout.fragment_saved_tidings), OnItemCl
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null){
                     binding.recyclerViewSavedTidings.scrollToPosition(0)
-                    viewModel.search(query)
+                    viewModel.searchSavedName(query)
                     searchView.clearFocus()
                 }
                 return true

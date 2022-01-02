@@ -31,14 +31,18 @@ class SavedTidingsViewModel @Inject constructor(
     fun getSaveTidings() = repository.saveArticle()
 
 
-    // Filtreleme İşlemleri için Repositoryden oluşturudpumuz search fonk getiriyoruz.
+
+    //Burada arama yapmak istediğimiz anahtar kelimeyi stringi yazarak searchQuery içerisinde tutuyoruz. Default olarak boş durumdadır.
     val searchQuery = MutableStateFlow("")
 
+    // Filtreleme yani arama işlemleri için Repositoryden oluşturuduğumuz searchSavedName fonksiyonunu getiriyoruz.
     val searchFlow = searchQuery.flatMapLatest { queryString ->
         repository.searchSavedName(queryString)
     }.asLiveData()
 
-    fun search(query: String){
+    // searchQuery değişkeni default olarak boş bir değerdedir.
+    // Ama search fonksiyonu sayesinde kullanıcıdan almış olduğumuz arama değerini yani stringi searchQuery e atamış oluyoruz.
+    fun searchSavedName(query: String){
         searchQuery.value = query
     }
 
