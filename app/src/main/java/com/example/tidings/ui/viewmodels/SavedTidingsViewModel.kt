@@ -3,6 +3,7 @@ package com.example.tidings.ui.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.example.tidings.data.db.TidingsDao
 import com.example.tidings.data.model.TidingsArticle
 import com.example.tidings.repository.TidingsRepository

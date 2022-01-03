@@ -1,8 +1,10 @@
 package com.example.tidings.ui.fragments
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -46,7 +48,11 @@ class ArticleTidingsFragment : Fragment(R.layout.fragment_tidings_article) {
             // Webview içerisinde haberleri kaydetmek için bir FloatingActionButton mevcut ve bu sayede istediğimiz haberleri bu buton sayesinde veritabanına kayıt ediyoruz.
             fab.setOnClickListener { view ->
                 viewModel.insertArticleTidings(articleTidings)
-                Snackbar.make(view,"Article Saved Successfully", Snackbar.LENGTH_LONG).show()
+                val toastMessage = Toast.makeText(view.context, "Article Saved Successfully", Toast.LENGTH_SHORT)
+                toastMessage.setGravity(Gravity.BOTTOM,0,180)
+                toastMessage.show()
+
+//                Snackbar.make(view,"Article Saved Successfully", Snackbar.LENGTH_LONG).show()
             }
 
         }

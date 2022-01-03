@@ -39,4 +39,18 @@
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
     </fragment>
+    <fragment
+        android:id="@+id/topHandlingTidingsFragment"
+        android:name="com.example.tidings.ui.fragments.TopHandlingTidingsFragment"
+        android:label="Top-Handling"
+        tools:layout="@layout/fragment_top_handling_tidings">
+        <action
+            android:id="@+id/action_topHandlingTidingsFragment_to_articleTidingsFragment"
+            app:destination="@id/articleTidingsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            />
+    </fragment>
 </navigation>

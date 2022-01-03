@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -20,7 +21,7 @@ import com.example.tidings.utils.OnItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BreakingTidingsFragment : Fragment(R.layout.fragment_breaking_tidings),OnItemClickListener {
+class BreakingTidingsFragment : Fragment(R.layout.fragment_breaking_tidings), OnItemClickListener {
 
     private val viewModel by viewModels<BreakingTidingsViewModel>()
     private var _binding: FragmentBreakingTidingsBinding? = null
@@ -33,8 +34,11 @@ class BreakingTidingsFragment : Fragment(R.layout.fragment_breaking_tidings),OnI
 
         _binding = FragmentBreakingTidingsBinding.bind(view)
 
+        (activity as? AppCompatActivity)?.supportActionBar?.title = "Breaking Tidings"
+
+
         // RecyclerView Adapter Tanımlandı.
-         adapter = TidingsAdapter(this)
+        adapter = TidingsAdapter(this)
         binding.apply {
             recyclerViewBreaking.setHasFixedSize(true)
             // LoadStateAdapter da oluşturmuş olduğumuz hata görüntüsünü recyclerview de göstermek için adapter.withLoadStateHeaderAndFooter methodunu kullanıyoruz.
@@ -95,6 +99,8 @@ class BreakingTidingsFragment : Fragment(R.layout.fragment_breaking_tidings),OnI
         // Sonra ise bu alınan query string değeri sayesinde UI da istenilen değeri filtreleme yani arama kısmı sayesinde göstermiş olduk.
         val searchItem = menu.findItem(R.id.menu_tidings_search)
         val searchView = searchItem.actionView as SearchView
+
+        searchView.queryHint = "Search News..."
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
@@ -116,7 +122,10 @@ class BreakingTidingsFragment : Fragment(R.layout.fragment_breaking_tidings),OnI
 
     // Burada ise TidingsAdapter içesinde RecyclerView içerisindeki herbir item'a tıklama(click) özelliği getirildi ve bu tıklama sayesinde ArticleTidingsFragment e navigate ettik yani o sayfaya yönlendirdik.
     override fun onItemClick(tidingsArticle: TidingsArticle) {
-        val action = BreakingTidingsFragmentDirections.actionBreakingTidingsFragmentToArticleTidingsFragment(tidingsArticle)
+        val action =
+            BreakingTidingsFragmentDirections.actionBreakingTidingsFragmentToArticleTidingsFragment(
+                tidingsArticle
+            )
         findNavController().navigate(action)
     }
 

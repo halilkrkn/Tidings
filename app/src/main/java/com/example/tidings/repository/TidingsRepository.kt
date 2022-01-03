@@ -32,6 +32,20 @@ class TidingsRepository @Inject constructor(
             }
         ).liveData
 
+    fun getTopHandlingTidingsResults(category: String) =
+        Pager(
+            // Burada pagination olan sayfalar yapılandırıldı.
+            config = PagingConfig(
+                pageSize = Constants.NETWORK_PAGE_SIZE,
+                maxSize= 100,
+                enablePlaceholders = false
+            ),
+            // UnsplashPagingSource u repository e ekledik.
+            pagingSourceFactory = {
+                TidingsPagingSource(tidingsApiService, category)
+            }
+        ).liveData
+
 
     suspend fun insertArticleTidings(article : TidingsArticle) = tidingsDatabase.getTidingsDao().insert(article)
 
