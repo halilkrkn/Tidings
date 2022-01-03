@@ -1,9 +1,11 @@
 package com.example.tidings.ui.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -35,6 +37,9 @@ class SavedTidingsFragment : Fragment(R.layout.fragment_saved_tidings), OnItemCl
 
         _binding = FragmentSavedTidingsBinding.bind(view)
 
+        (activity as? AppCompatActivity)?.supportActionBar?.title = "Saved Tidings"
+
+
         savedAdapter = SavedTidingsAdapter(this)
         binding.recyclerViewSavedTidings.apply {
             setHasFixedSize(true)
@@ -63,6 +68,8 @@ class SavedTidingsFragment : Fragment(R.layout.fragment_saved_tidings), OnItemCl
                 val article = savedAdapter.differ.currentList[position]
                 viewModel.deleteArticleTidings(article)
                 Snackbar.make(view, "Successfully deleted article", Snackbar.LENGTH_LONG).apply {
+                    setTextColor(Color.WHITE)
+                    setActionTextColor(Color.LTGRAY)
                     setAction("Undo") {
                         viewModel.insertArticleTidings(article)
                     }
@@ -101,6 +108,7 @@ class SavedTidingsFragment : Fragment(R.layout.fragment_saved_tidings), OnItemCl
         val searchItem = menu.findItem(R.id.menu_tidings_search)
         val searchView = searchItem.actionView as SearchView
 
+        searchView.queryHint = "Find Saved News..."
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null){
