@@ -29,6 +29,6 @@
 - Dagger Hilt sayesinde modeller ve View arasındaki bağlantıları, Application içerisindeki bağlantıları, Retrofitle olan bağlantıların nasıl oluşturulduğunu 
 - Recyclerview içerisinde DiffUtil kullanımını öğreneceksiniz.
 - Kotlin Flow yapısının database içerisinde kullanıp ViewModel içerisinde ise nasıl kullanılması gerektiği ve View e nasıl aktarılması gerektiğini 
-## ScreenShots
+## [ScreenShots](https://github.com/halilkrkn/Tidings/tree/master/screenshots)
 
-![Alt Text](https://github.com/halilkrkn/Tidings/blob/master/screenshots/tiding-screenshot.png)
+![Alt Text](https://github.com/halilkrkn/Tidings/blob/master/screenshots/tidings.gif)
