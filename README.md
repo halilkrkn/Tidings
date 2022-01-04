@@ -20,7 +20,7 @@
 - View Binding
 - Navigation Components
 - Coroutines 
-- ## Bu Uygulamada Neler Öğreneceksiniz?
+- ## Bu Uygulamada Neler Öğrenildi?
 - Newsapi üzerinden verileri retroit kütüphanesindeki yapıları kullanarak daha sağlıklı nasıl çekildiğini
 - Pagination İşlemi yani Sayfalandırma başka bir deyişle Sonsuz Sayfalandırma yapısını RecyclerView'le nasıl kullanıldığını
 - Pagination işlemleri içerisindeki hearder ve footer kavramlarını kullanarak Recyclerview yapısını esnek bir hale getirip hata mesajlarını ve network içerisindeki kontrolleri kolay bir şekilde yapmamıza olanak sağlıyor.
