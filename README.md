@@ -31,4 +31,4 @@
 - Kotlin Flow yapısının database içerisinde kullanıp ViewModel içerisinde ise nasıl kullanılması gerektiği ve View e nasıl aktarılması gerektiğini 
 ## ScreenShots
 
-![Alt Text](https://github.com/halilkrkn/Tidings/blob/master/screenshots/tiding-screenshot.png)
+![Alt Text](https://github.com/halilkrkn/Tidings/blob/master/screenshots/tidings.gif)
